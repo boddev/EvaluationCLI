@@ -1,0 +1,6 @@
+prompt,expected_answer,source_location,actual_answer
+"What was the main topic discussed in last week's team standup?","The team discussed the Q2 roadmap priorities and sprint planning for the new authentication feature","Teams - Weekly Standup channel",
+"Who sent the latest update on the budget proposal?","Sarah Johnson sent the latest budget proposal update on March 10","Outlook - Budget Planning thread",
+"What action items were assigned in the project kickoff meeting?","Three action items were assigned: 1) Complete technical design doc by March 15, 2) Set up CI/CD pipeline by March 20, 3) Schedule stakeholder review for March 25","Calendar - Project Kickoff meeting notes",
+"Where is the latest version of the architecture diagram stored?","The latest architecture diagram v3.2 is stored in the Engineering team SharePoint site under /Technical Docs/Architecture/","SharePoint - Engineering team site",
+"What did the CEO mention about company priorities in the all-hands?","The CEO highlighted three priorities: customer satisfaction, product innovation, and team growth","Teams - All Hands recording and transcript",
