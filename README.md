@@ -30,7 +30,7 @@ EvaluationCLI/
 │   ├── powershell/                 # PowerShell implementation
 │   └── README.md                   # Deep EvalScore documentation
 │
-├── environment-datasets/           # Local connector/source datasets for eval generation
+├── environment-datasets/           # Sample connector/source datasets for eval generation
 ├── eval-output/                    # Local generated eval sets and reports
 ├── .copilot/skills/                # Copilot CLI skill definitions
 └── .github/                        # Repository-specific Copilot instructions

@@ -1,0 +1,160 @@
+{
+  "createdAt": "2026-04-27T15:56:00.372Z",
+  "updatedAt": "2026-04-27T15:58:19.2527257Z",
+  "connector": "ngo-environment",
+  "sourceInventory": "NGO_Connectors/NGO_INDUSTRY_DATA.md",
+  "outputDirectory": "environment-datasets",
+  "notes": "Datasets used by ngo-environment connector dataSources: OWID CSV, World Bank climate/environment indicators, and optional EM-DAT CSV export.",
+  "datasets": [
+    {
+      "name": "OWID CO2 and Greenhouse Gas Emissions",
+      "organization": "Our World in Data",
+      "sourceUrl": "https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv",
+      "localPath": "owid/owid-co2-data.csv",
+      "status": "downloaded",
+      "notes": "Raw CSV used by ngo-environment for CO2, GHG, and land-use-change indicators.",
+      "bytes": 14331624,
+      "records": 50411
+    },
+    {
+      "name": "CO2 emissions per capita (metric tons of CO2 equivalent)",
+      "organization": "World Bank",
+      "sourceUrl": "https://api.worldbank.org/v2/country/all/indicator/EN.GHG.CO2.PC.CE.AR5?format=json&per_page=20000&date=2000:2025&page=1",
+      "connectorUrlPattern": "https://api.worldbank.org/v2/country/all/indicator/EN.GHG.CO2.PC.CE.AR5?format=json&per_page=300&date=2000:2025&page={page}",
+      "localPath": "worldbank/EN.GHG.CO2.PC.CE.AR5.json",
+      "status": "downloaded",
+      "notes": "Raw JSON plus CSV copy: worldbank/EN.GHG.CO2.PC.CE.AR5.csv. Connector paginates with: https://api.worldbank.org/v2/country/all/indicator/EN.GHG.CO2.PC.CE.AR5?format=json&per_page=300&date=2000:2025&page={page}",
+      "bytes": 2785378,
+      "records": 6916
+    },
+    {
+      "name": "CO2 emissions total (Mt of CO2 equivalent, AR5)",
+      "organization": "World Bank",
+      "sourceUrl": "https://api.worldbank.org/v2/country/all/indicator/EN.GHG.CO2.MT.CE.AR5?format=json&per_page=20000&date=2000:2025&page=1",
+      "connectorUrlPattern": "https://api.worldbank.org/v2/country/all/indicator/EN.GHG.CO2.MT.CE.AR5?format=json&per_page=300&date=2000:2025&page={page}",
+      "localPath": "worldbank/EN.GHG.CO2.MT.CE.AR5.json",
+      "status": "downloaded",
+      "notes": "Raw JSON plus CSV copy: worldbank/EN.GHG.CO2.MT.CE.AR5.csv. Connector paginates with: https://api.worldbank.org/v2/country/all/indicator/EN.GHG.CO2.MT.CE.AR5?format=json&per_page=300&date=2000:2025&page={page}",
+      "bytes": 2665410,
+      "records": 6916
+    },
+    {
+      "name": "Total greenhouse gas emissions (Mt of CO2 equivalent, AR5)",
+      "organization": "World Bank",
+      "sourceUrl": "https://api.worldbank.org/v2/country/all/indicator/EN.GHG.TOTL.MT.CE.AR5?format=json&per_page=20000&date=2000:2025&page=1",
+      "connectorUrlPattern": "https://api.worldbank.org/v2/country/all/indicator/EN.GHG.TOTL.MT.CE.AR5?format=json&per_page=300&date=2000:2025&page={page}",
+      "localPath": "worldbank/EN.GHG.TOTL.MT.CE.AR5.json",
+      "status": "api-error",
+      "notes": "World Bank API did not return data for this configured connector indicator. Raw API response is preserved in worldbank/EN.GHG.TOTL.MT.CE.AR5.json. Replacement current World Bank indicator downloaded as EN.GHG.ALL.MT.CE.AR5.",
+      "bytes": 664,
+      "records": 0
+    },
+    {
+      "name": "Renewable energy consumption (% of total final energy)",
+      "organization": "World Bank",
+      "sourceUrl": "https://api.worldbank.org/v2/country/all/indicator/EG.FEC.RNEW.ZS?format=json&per_page=20000&date=2000:2025&page=1",
+      "connectorUrlPattern": "https://api.worldbank.org/v2/country/all/indicator/EG.FEC.RNEW.ZS?format=json&per_page=300&date=2000:2025&page={page}",
+      "localPath": "worldbank/EG.FEC.RNEW.ZS.json",
+      "status": "downloaded",
+      "notes": "Raw JSON plus CSV copy: worldbank/EG.FEC.RNEW.ZS.csv. Connector paginates with: https://api.worldbank.org/v2/country/all/indicator/EG.FEC.RNEW.ZS?format=json&per_page=300&date=2000:2025&page={page}",
+      "bytes": 2620994,
+      "records": 6916
+    },
+    {
+      "name": "Renewable electricity output (% of total electricity)",
+      "organization": "World Bank",
+      "sourceUrl": "https://api.worldbank.org/v2/country/all/indicator/EG.ELC.RNEW.ZS?format=json&per_page=20000&date=2000:2025&page=1",
+      "connectorUrlPattern": "https://api.worldbank.org/v2/country/all/indicator/EG.ELC.RNEW.ZS?format=json&per_page=300&date=2000:2025&page={page}",
+      "localPath": "worldbank/EG.ELC.RNEW.ZS.json",
+      "status": "downloaded",
+      "notes": "Raw JSON plus CSV copy: worldbank/EG.ELC.RNEW.ZS.csv. Connector paginates with: https://api.worldbank.org/v2/country/all/indicator/EG.ELC.RNEW.ZS?format=json&per_page=300&date=2000:2025&page={page}",
+      "bytes": 2630734,
+      "records": 6916
+    },
+    {
+      "name": "Forest area (% of land area)",
+      "organization": "World Bank",
+      "sourceUrl": "https://api.worldbank.org/v2/country/all/indicator/AG.LND.FRST.ZS?format=json&per_page=20000&date=2000:2025&page=1",
+      "connectorUrlPattern": "https://api.worldbank.org/v2/country/all/indicator/AG.LND.FRST.ZS?format=json&per_page=300&date=2000:2025&page={page}",
+      "localPath": "worldbank/AG.LND.FRST.ZS.json",
+      "status": "downloaded",
+      "notes": "Raw JSON plus CSV copy: worldbank/AG.LND.FRST.ZS.csv. Connector paginates with: https://api.worldbank.org/v2/country/all/indicator/AG.LND.FRST.ZS?format=json&per_page=300&date=2000:2025&page={page}",
+      "bytes": 2419915,
+      "records": 6916
+    },
+    {
+      "name": "Forest area (sq. km)",
+      "organization": "World Bank",
+      "sourceUrl": "https://api.worldbank.org/v2/country/all/indicator/AG.LND.FRST.K2?format=json&per_page=20000&date=2000:2025&page=1",
+      "connectorUrlPattern": "https://api.worldbank.org/v2/country/all/indicator/AG.LND.FRST.K2?format=json&per_page=300&date=2000:2025&page={page}",
+      "localPath": "worldbank/AG.LND.FRST.K2.json",
+      "status": "downloaded",
+      "notes": "Raw JSON plus CSV copy: worldbank/AG.LND.FRST.K2.csv. Connector paginates with: https://api.worldbank.org/v2/country/all/indicator/AG.LND.FRST.K2?format=json&per_page=300&date=2000:2025&page={page}",
+      "bytes": 2310773,
+      "records": 6916
+    },
+    {
+      "name": "PM2.5 air pollution (micrograms per cubic meter)",
+      "organization": "World Bank",
+      "sourceUrl": "https://api.worldbank.org/v2/country/all/indicator/EN.ATM.PM25.MC.M3?format=json&per_page=20000&date=2000:2025&page=1",
+      "connectorUrlPattern": "https://api.worldbank.org/v2/country/all/indicator/EN.ATM.PM25.MC.M3?format=json&per_page=300&date=2000:2025&page={page}",
+      "localPath": "worldbank/EN.ATM.PM25.MC.M3.json",
+      "status": "downloaded",
+      "notes": "Raw JSON plus CSV copy: worldbank/EN.ATM.PM25.MC.M3.csv. Connector paginates with: https://api.worldbank.org/v2/country/all/indicator/EN.ATM.PM25.MC.M3?format=json&per_page=300&date=2000:2025&page={page}",
+      "bytes": 2722453,
+      "records": 6916
+    },
+    {
+      "name": "Terrestrial and marine protected areas (% of total territorial area)",
+      "organization": "World Bank",
+      "sourceUrl": "https://api.worldbank.org/v2/country/all/indicator/ER.PTD.TOTL.ZS?format=json&per_page=20000&date=2000:2025&page=1",
+      "connectorUrlPattern": "https://api.worldbank.org/v2/country/all/indicator/ER.PTD.TOTL.ZS?format=json&per_page=300&date=2000:2025&page={page}",
+      "localPath": "worldbank/ER.PTD.TOTL.ZS.json",
+      "status": "downloaded",
+      "notes": "Raw JSON plus CSV copy: worldbank/ER.PTD.TOTL.ZS.csv. Connector paginates with: https://api.worldbank.org/v2/country/all/indicator/ER.PTD.TOTL.ZS?format=json&per_page=300&date=2000:2025&page={page}",
+      "bytes": 2631074,
+      "records": 6916
+    },
+    {
+      "name": "Droughts, floods, extreme temperatures (% pop affected, 1990-2009 avg)",
+      "organization": "World Bank",
+      "sourceUrl": "https://api.worldbank.org/v2/country/all/indicator/EN.CLC.MDAT.ZS?format=json&per_page=20000&date=2000:2025&page=1",
+      "connectorUrlPattern": "https://api.worldbank.org/v2/country/all/indicator/EN.CLC.MDAT.ZS?format=json&per_page=300&date=2000:2025&page={page}",
+      "localPath": "worldbank/EN.CLC.MDAT.ZS.json",
+      "status": "downloaded",
+      "notes": "Raw JSON plus CSV copy: worldbank/EN.CLC.MDAT.ZS.csv. Connector paginates with: https://api.worldbank.org/v2/country/all/indicator/EN.CLC.MDAT.ZS?format=json&per_page=300&date=2000:2025&page={page}",
+      "bytes": 2676415,
+      "records": 6916
+    },
+    {
+      "name": "Annual freshwater withdrawals (% of internal resources)",
+      "organization": "World Bank",
+      "sourceUrl": "https://api.worldbank.org/v2/country/all/indicator/ER.H2O.FWTL.ZS?format=json&per_page=20000&date=2000:2025&page=1",
+      "connectorUrlPattern": "https://api.worldbank.org/v2/country/all/indicator/ER.H2O.FWTL.ZS?format=json&per_page=300&date=2000:2025&page={page}",
+      "localPath": "worldbank/ER.H2O.FWTL.ZS.json",
+      "status": "downloaded",
+      "notes": "Raw JSON plus CSV copy: worldbank/ER.H2O.FWTL.ZS.csv. Connector paginates with: https://api.worldbank.org/v2/country/all/indicator/ER.H2O.FWTL.ZS?format=json&per_page=300&date=2000:2025&page={page}",
+      "bytes": 2632164,
+      "records": 6916
+    },
+    {
+      "name": "EM-DAT International Disaster Database",
+      "organization": "CRED/EM-DAT",
+      "sourceUrl": "https://public.emdat.be/data",
+      "localPath": "emdat/emdat-download-required.json",
+      "status": "registration-required",
+      "notes": "Manual CSV export required from public.emdat.be; connector expects state/emdat-export.csv."
+    },
+    {
+      "name": "Total greenhouse gas emissions excluding LULUCF (Mt CO2e)",
+      "organization": "World Bank",
+      "sourceUrl": "https://api.worldbank.org/v2/country/all/indicator/EN.GHG.ALL.MT.CE.AR5?format=json&per_page=20000&date=2000:2025&page=1",
+      "replaces": "EN.GHG.TOTL.MT.CE.AR5",
+      "localPath": "worldbank/EN.GHG.ALL.MT.CE.AR5.json",
+      "status": "downloaded-replacement",
+      "notes": "Current World Bank replacement for the connector-configured total GHG indicator; raw JSON plus CSV copy: worldbank/EN.GHG.ALL.MT.CE.AR5.csv",
+      "bytes": 2722401,
+      "records": 6916
+    }
+  ]
+}

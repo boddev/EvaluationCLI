@@ -1,0 +1,7 @@
+{
+  "name": "EM-DAT International Disaster Database",
+  "sourceUrl": "https://public.emdat.be/data",
+  "status": "registration-required",
+  "expectedConnectorPath": ".\\ngo-environment\\state\\emdat-export.csv",
+  "note": "The ngo-environment connector reads EM-DAT from a local CSV export. public.emdat.be requires registration/login, so no unauthenticated file could be downloaded automatically."
+}
