@@ -3,6 +3,7 @@ import { WorkIQClient, buildPrompt } from './workiq-client';
 
 export interface EvaluateOptions {
   systemPrompt?: string;
+  connectorId?: string;
   tenantId?: string;
   onProgress?: (completed: number, total: number, currentPrompt: string) => void;
 }
@@ -29,7 +30,7 @@ export async function evaluatePrompts(
 
     process.stderr.write(`\rProcessing prompt ${i + 1}/${total}...`);
 
-    const fullPrompt = buildPrompt(row.prompt, options?.systemPrompt);
+    const fullPrompt = buildPrompt(row.prompt, options?.systemPrompt, options?.connectorId);
 
     try {
       const response = await client.ask(fullPrompt, options?.tenantId);

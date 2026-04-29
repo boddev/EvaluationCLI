@@ -362,6 +362,8 @@ async function runGenerate(options: ExtendedOptions): Promise<void> {
     console.log(`  📋 Review the generated questions in: ${reviewPath}`);
     console.log(`  Edit the CSV directly to adjust questions/answers before running EvalScore.`);
   }
+
+  client?.close?.();
 }
 
 main().catch((err: Error) => {

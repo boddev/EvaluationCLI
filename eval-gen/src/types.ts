@@ -154,4 +154,5 @@ export interface CliOptions {
 export interface LLMClient {
   authenticate?(): Promise<void>;
   generateStructured<T>(prompt: string, schema: string): Promise<T>;
+  close?(): void;
 }

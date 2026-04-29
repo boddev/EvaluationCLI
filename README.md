@@ -110,7 +110,16 @@ cd C:\Users\bodonnell\src\EvaluationCLI
 
 eval-score `
   --input ".\eval-output\environment-datasets-eval.csv" `
-  --sidecar ".\eval-output\environment-datasets-eval.evalgen.json"
+  --sidecar ".\eval-output\environment-datasets-eval.evalgen.json" `
+  --connector-id "ngoenvironment" `
+  --system-prompt-file ".\prompts\ngo-environment-system-prompt.md"
+```
+
+To run the full environment workflow reproducibly:
+
+```cmd
+cd C:\Users\bodonnell\src\EvaluationCLI
+run-environment-eval.cmd -TenantId 976f427e-0d86-4ecf-ace3-4d1368eb8358
 ```
 
 See the deep-dive documentation for full usage, options, providers, and troubleshooting:

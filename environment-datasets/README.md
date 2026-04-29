@@ -21,3 +21,9 @@ eval-gen `
   --connector-schema ".\eval-gen\examples\environment-datasets-connector-schema.json" `
   --output ".\eval-output\environment-datasets-eval.csv"
 ```
+
+To generate the eval set and then score it against the `ngoenvironment` connector with the included system prompt:
+
+```cmd
+run-environment-eval.cmd -TenantId 976f427e-0d86-4ecf-ace3-4d1368eb8358
+```

@@ -82,7 +82,9 @@ The Node.js implementation can also load EvalGen assertion data through `--sidec
 
    eval-score `
      --input ..\..\eval-output\environment-datasets-eval.csv `
-     --sidecar ..\..\eval-output\environment-datasets-eval.evalgen.json
+     --sidecar ..\..\eval-output\environment-datasets-eval.evalgen.json `
+     --connector-id ngoenvironment `
+     --system-prompt-file ..\..\prompts\ngo-environment-system-prompt.md
    ```
 
 ## WorkIQ Authentication

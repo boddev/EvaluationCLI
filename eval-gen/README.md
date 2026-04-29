@@ -67,7 +67,9 @@ cd C:\Users\bodonnell\src\EvaluationCLI\eval-score\node
 
 eval-score `
   --input ..\..\eval-output\environment-datasets-eval.csv `
-  --sidecar ..\..\eval-output\environment-datasets-eval.evalgen.json
+  --sidecar ..\..\eval-output\environment-datasets-eval.evalgen.json `
+  --connector-id ngoenvironment `
+  --system-prompt-file ..\..\prompts\ngo-environment-system-prompt.md
 ```
 
 The sidecar enables assertion-aware scoring in addition to semantic similarity scoring.

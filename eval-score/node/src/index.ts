@@ -23,6 +23,7 @@ async function main(): Promise<void> {
     .option('--input <path>', 'Path to evaluation dataset')
     .option('--system-prompt <text>', 'Inline system prompt')
     .option('--system-prompt-file <path>', 'Path to system prompt file')
+    .option('--connector-id <id>', 'Microsoft 365 Copilot connector ID to target')
     .option('--output-dir <path>', 'Output directory', './output')
     .option('--threshold <number>', 'Pass/fail threshold (0-100)', '70')
     .option('--tenant-id <id>', 'Microsoft 365 tenant ID to target')
@@ -48,6 +49,7 @@ async function main(): Promise<void> {
     input: opts.input as string ?? '',
     systemPrompt: opts.systemPrompt as string | undefined,
     systemPromptFile: opts.systemPromptFile as string | undefined,
+    connectorId: opts.connectorId as string | undefined,
     outputDir: opts.outputDir as string,
     threshold: Number(opts.threshold),
     tenantId: opts.tenantId as string | undefined,
@@ -92,6 +94,9 @@ async function main(): Promise<void> {
   console.error(`  Threshold:     ${options.threshold}%`);
   if (options.tenantId) {
     console.error(`  Tenant ID:     ${options.tenantId}`);
+  }
+  if (options.connectorId) {
+    console.error(`  Connector ID:  ${options.connectorId}`);
   }
   if (systemPrompt) {
     const preview = systemPrompt.length > 60 ? systemPrompt.slice(0, 60) + '...' : systemPrompt;
@@ -161,6 +166,7 @@ async function main(): Promise<void> {
     console.error('Evaluating prompts...');
     const evaluatedRows = await evaluatePrompts(rows, client, {
       systemPrompt,
+      connectorId: options.connectorId,
       tenantId: options.tenantId,
       onProgress: (completed, total, currentPrompt) => {
         const preview = currentPrompt.length > 50 ? currentPrompt.slice(0, 50) + '...' : currentPrompt;

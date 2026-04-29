@@ -80,6 +80,20 @@ export class WorkIQCopilotClient implements LLMClient {
     return parseStructuredJson<T>(output);
   }
 
+  close(): void {
+    if (this.rl) {
+      this.rl.close();
+      this.rl = null;
+    }
+    if (this.process && !this.process.killed) {
+      this.process.stdin?.end();
+      this.process.kill();
+    }
+    this.process = null;
+    this.lineBuffer = [];
+    this.lineResolvers = [];
+  }
+
   private async start(): Promise<void> {
     if (this.process && !this.process.killed) return;
 
@@ -168,6 +182,9 @@ export class WorkIQCopilotClient implements LLMClient {
   private readLine(): Promise<string> {
     if (this.lineBuffer.length > 0) {
       return Promise.resolve(this.lineBuffer.shift()!);
+    }
+    if (!this.process || this.process.killed) {
+      return Promise.reject(new Error('WorkIQ MCP process is not running'));
     }
     return new Promise((resolve) => {
       this.lineResolvers.push(resolve);

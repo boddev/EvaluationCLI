@@ -14,6 +14,7 @@
     "test:eval-score": "npm test --prefix eval-score/node",
     "install:tools": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts\\install-tools.ps1",
     "uninstall:tools": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts\\uninstall-tools.ps1",
-    "link:tools": "npm run install:tools"
+    "link:tools": "npm run install:tools",
+    "eval:environment": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts\\run-environment-eval.ps1"
   }
 }

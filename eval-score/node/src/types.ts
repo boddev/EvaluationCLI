@@ -120,6 +120,9 @@ export interface CliOptions {
   /** Path to a file containing the system prompt (optional) */
   systemPromptFile?: string;
 
+  /** Microsoft 365 Copilot connector ID to target for WorkIQ queries (optional) */
+  connectorId?: string;
+
   /** Output directory for reports and results (default: './output') */
   outputDir: string;
 

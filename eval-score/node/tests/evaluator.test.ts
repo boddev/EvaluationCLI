@@ -93,4 +93,25 @@ describe('evaluatePrompts', () => {
     expect(progressCalls[0]).toEqual({ completed: 1, total: 2, prompt: 'What is 2+2?' });
     expect(progressCalls[1]).toEqual({ completed: 2, total: 2, prompt: 'Capital of France?' });
   });
+
+  it('prepends connector targeting instructions when connectorId is provided', async () => {
+    const callLog: string[] = [];
+    const client: WorkIQClient = {
+      async ask(question: string) {
+        callLog.push(question);
+        return 'answer';
+      },
+    };
+    const rows = [makeRows()[0]];
+
+    await evaluatePrompts(rows, client, {
+      connectorId: 'ngoenvironment',
+      systemPrompt: 'Use environmental data.',
+    });
+
+    expect(callLog).toHaveLength(1);
+    expect(callLog[0]).toContain('Target Microsoft 365 Copilot connector ID: ngoenvironment');
+    expect(callLog[0]).toContain('Use environmental data.');
+    expect(callLog[0]).toContain('What is 2+2?');
+  });
 });

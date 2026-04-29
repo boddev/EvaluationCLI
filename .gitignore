@@ -8,6 +8,9 @@ sample-data/WSPEvalSet.csv
 sample-data/WSPEvalSet.xlsx
 output/WSPEvalSet-results.csv
 output/WSPEvalSet-report.md
+output/environment-datasets-eval*
+eval-output/
+eval-output/**
 
 eval-gen/output/
 eval-gen/output/**

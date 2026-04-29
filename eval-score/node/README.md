@@ -77,6 +77,7 @@ eval-score `
 | `--sidecar <path>` | No | Load EvalGen assertions/metadata alongside `--input` |
 | `--system-prompt <text>` | No | Text prepended to each prompt |
 | `--system-prompt-file <path>` | No | File containing a system prompt |
+| `--connector-id <id>` | No | Microsoft 365 Copilot connector ID to target in the WorkIQ prompt context |
 | `--output-dir <path>` | No | Output directory; default `./output` |
 | `--threshold <number>` | No | Pass/fail threshold, 0–100; default `70` |
 | `--tenant-id <id>` | No | Microsoft 365 tenant ID for WorkIQ |

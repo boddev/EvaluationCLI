@@ -16,9 +16,25 @@ export interface WorkIQClient {
 /**
  * Build the full prompt by prepending the system prompt (if any) to the user's question.
  */
-export function buildPrompt(question: string, systemPrompt?: string): string {
-  if (!systemPrompt) return question;
-  return `${systemPrompt}\n\n${question}`;
+export function buildPrompt(
+  question: string,
+  systemPrompt?: string,
+  connectorId?: string
+): string {
+  const contextParts: string[] = [];
+
+  if (connectorId) {
+    contextParts.push(
+      `Target Microsoft 365 Copilot connector ID: ${connectorId}. Always search this connector before answering.`
+    );
+  }
+
+  if (systemPrompt) {
+    contextParts.push(systemPrompt);
+  }
+
+  if (contextParts.length === 0) return question;
+  return `${contextParts.join('\n\n')}\n\n${question}`;
 }
 
 /**
@@ -62,9 +78,7 @@ export class CliWorkIQClient implements WorkIQClient {
     // ask_work_iq to fail. MCP handles tenant resolution internally.
     const args = ['mcp'];
 
-    this.process = spawn('workiq', args, {
-      stdio: ['pipe', 'pipe', 'pipe'],
-    });
+    this.process = spawnWorkIQ(args);
 
     this.rl = readline.createInterface({ input: this.process.stdout! });
     this.rl.on('line', (line: string) => {
@@ -206,6 +220,23 @@ export class CliWorkIQClient implements WorkIQClient {
 
     throw new Error(`Timed out waiting for MCP response (id=${expectedId})`);
   }
+}
+
+function spawnWorkIQ(args: string[]): ChildProcess {
+  if (process.platform === 'win32') {
+    return spawn(buildShellCommand('workiq', args), { shell: true, stdio: ['pipe', 'pipe', 'pipe'] });
+  }
+  return spawn('workiq', args, { stdio: ['pipe', 'pipe', 'pipe'] });
+}
+
+function buildShellCommand(command: string, args: string[]): string {
+  if (args.length === 0) return command;
+  return [command, ...args.map(quoteShellArg)].join(' ');
+}
+
+function quoteShellArg(value: string): string {
+  if (!/[\s"&|<>^]/.test(value)) return value;
+  return `"${value.replace(/"/g, '\\"')}"`;
 }
 
 /**
