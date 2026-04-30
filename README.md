@@ -1,11 +1,12 @@
 # Copilot Evaluation Toolkit
 
-This repository is a toolkit for creating and running Microsoft 365 Copilot / WorkIQ evaluations. It contains two related tools:
+This repository is a toolkit for creating and running Microsoft 365 Copilot / WorkIQ evaluations. It contains two primary tools plus an optional Microsoft `m365-copilot-eval` integration:
 
 | Tool | Location | Purpose |
 |------|----------|---------|
 | **EvalGen** | [`eval-gen/`](eval-gen/README.md) | Generates evaluation datasets: prompts, expected answers, source locations, assertions, and review artifacts from source data. |
 | **EvalScore** | [`eval-score/`](eval-score/README.md) | Runs evaluation datasets against WorkIQ / Microsoft 365 Copilot, records actual answers, scores responses, evaluates assertions, and writes reports. |
+| **m365-copilot-eval adapter** | [`scripts/`](scripts/) | Converts EvalGen output to the `@microsoft/m365-copilot-eval` schema and runs Microsoft's agent evaluation CLI. |
 
 ## End-to-End Workflow
 
@@ -57,6 +58,28 @@ EvalScore consumes an eval set and produces scored results:
 - `<input-name>-report.md` with score distribution, pass/fail summary, and per-question details
 
 EvalScore is the tool that sends prompts to WorkIQ / Microsoft 365 Copilot.
+
+### Optional m365-copilot-eval Integration
+
+The repository also includes scripts for using EvalGen output with Microsoft's `@microsoft/m365-copilot-eval` package:
+
+- `scripts\convert-evalgen-to-m365-copilot-eval.ps1` converts EvalGen CSV plus sidecar JSON to the Microsoft eval document schema.
+- `scripts\run-environment-m365-copilot-eval.ps1` runs the environment EvalGen workflow, converts the generated eval set, and invokes `runevals`.
+- `run-environment-m365-copilot-eval.cmd` is the Command Prompt wrapper.
+
+Example:
+
+```powershell
+cd C:\Users\bodonnell\src\EvaluationCLI
+
+.\scripts\run-environment-m365-copilot-eval.ps1 `
+  -TenantId 976f427e-0d86-4ecf-ace3-4d1368eb8358 `
+  -M365AgentId "<m365-agent-id>" `
+  -Count 10 `
+  -AcceptEula
+```
+
+`@microsoft/m365-copilot-eval` targets M365 Copilot agents, so `-M365AgentId` is an agent ID, not the `ngoenvironment` connector ID. The connector ID is still included in prompt context and output metadata. See [`docs/m365-copilot-eval-feature-gap-plan.md`](docs/m365-copilot-eval-feature-gap-plan.md) for the integration details and EvalScore feature gap plan.
 
 ## Install and Uninstall the Command-Line Tools
 

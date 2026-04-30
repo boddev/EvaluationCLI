@@ -11,6 +11,8 @@ output/WSPEvalSet-report.md
 output/environment-datasets-eval*
 eval-output/
 eval-output/**
+.evals/
+.evals/**
 
 eval-gen/output/
 eval-gen/output/**
@@ -21,3 +23,7 @@ eval-gen/.vitest/
 eval-gen/.vitest/**
 eval-gen/coverage/
 eval-gen/coverage/**
+run-environment-m365-copilot-eval.cmd
+docs/m365-copilot-eval-feature-gap-plan.md
+scripts/convert-evalgen-to-m365-copilot-eval.ps1
+scripts/run-environment-m365-copilot-eval.ps1
